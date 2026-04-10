@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Hàm lấy mã SHA-256 từ mô tả (Release Notes)
 function extractSHA256(bodyText) {
-    const match = bodyText.match(/SHA-256:\s*([a-fA-F0-0]{64})/);
+    const match = bodyText.match(/SHA-256:\s*([a-fA-F0-9]{64})/);
     return match ? match[1] : "Chưa công bố SHA-256";
 }
 
