@@ -1,14 +1,13 @@
 // --- 1. CONFIGURATION ---
 const REPO_CONFIG = {
-    owner: "ThuanNg05", // <-- Thay bằng username GitHub của bạn
-    repo: "Invoice"        // <-- Thay bằng tên repository của bạn
+    owner: "ThuanNg05",
+    repo: "Invoice",    
 };
 const appName = "InvoiceApp";
 let appConfig = {};
 
 // --- 2. INITIALIZE DOM & FETCH DATA ---
-document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Set cơ bản ngay lập tức
+document.addEventListener('DOMContentLoaded', async () => {    
     document.title = `${appName} - Tải xuống`;
     document.getElementById('nav-app-name').textContent = appName;
     document.getElementById('hero-title').textContent = appName;
@@ -21,7 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!response.ok) throw new Error('Không tìm thấy release mới nhất');
         
         const data = await response.json();
-        const asset = data.assets.find(a => a.name.endsWith('.exe')); // Tìm file cài đặt đầu tiên
+        const asset = data.assets.find(a => a.name.endsWith('.exe'));
+        browser_download_url = `https://github.com/${REPO_CONFIG.owner}/${REPO_CONFIG.repo}/releases/download/${data.tag_name}/Setup.exe`;
 
         appConfig = {
             version: data.tag_name,
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             fileSize: asset ? `${(asset.size / (1024 * 1024)).toFixed(1)} MB` : "N/A",
             updatedDate: new Date(data.published_at).toLocaleDateString('vi-VN'),
             downloadUrl: asset ? asset.browser_download_url : "#",
-            sha256: extractSHA256(data.body), // Lấy SHA từ mô tả release
+            sha256: extractSHA256(data.body),
             supportedOS: "Windows 10/11 (64-bit)"
         };
         
@@ -72,25 +72,21 @@ function updateUIWithConfig() {
 let isDownloading = false;
 
 function triggerDownload() {
-    if (isDownloading) return; // Chống spam click
+    if (isDownloading) return;
     
     const btn = document.getElementById('main-download-btn');
     const btnText = document.getElementById('download-text');
-    const heroBtns = document.querySelectorAll('.hero .btn-primary'); // Disable luôn nút ở hero
-
-    // Cập nhật state UI
+    const heroBtns = document.querySelectorAll('.hero .btn-primary');
+    
     isDownloading = true;
     btn.classList.add('loading');
     btn.disabled = true;
     btnText.textContent = "Đang chuẩn bị tải...";
     heroBtns.forEach(b => { b.disabled = true; b.style.opacity = '0.7'; });
 
-    // Hiển thị toast thông báo
     showToast('Đang bắt đầu tải xuống file...', 'info');
-
-    // Giả lập delay 1.5s trước khi chuyển link tải
-    setTimeout(() => {
-        // Chuyển hướng tới file tải xuống
+    
+    setTimeout(() => {        
         window.location.href = appConfig.downloadUrl; // <-- Bật dòng này ở thực tế
         
         // Demo mục đích (hiển thị thành công và reset nút)
