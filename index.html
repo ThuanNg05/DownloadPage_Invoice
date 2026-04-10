@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần mềm quản lý hóa đơn và bán hàng</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/Icon.ico">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="Assets/Logo.png" alt="logo" width="40px"/>
+                </div>
+                <span id="nav-app-name">InvoiceApp</span>
+            </div>
+            <div>
+                <a href="#changelog" class="badge success" id="nav-version">Latest: v1.0.0</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <header id="hero" class="hero fade-in">
+            <div class="container">
+                <h1 id="hero-title">InvoiceApp</h1>
+                <p>Phần mềm quản lý hóa đơn và bán hàng đơn giản, nhanh, trực quan dành cho cửa hàng và doanh nghiệp nhỏ.</p>
+                
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="triggerDownload()">
+                        <svg class="btn-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Tải xuống cho Windows
+                    </button>
+                    <button class="btn btn-secondary" id="btn-scroll-guide">
+                        Xem hướng dẫn cài đặt
+                    </button>
+                </div>
+
+                <div class="hero-meta">
+                    <span class="badge" id="badge-version">Phiên bản: v1.0.0</span>
+                    <span class="badge" id="badge-size">Dung lượng: 25.4 MB</span>
+                    <span class="badge" id="badge-date">Cập nhật: 09/04/2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. Download Card Section -->
+        <section id="download" class="download-section fade-in">
+            <div class="container">
+                <div class="download-card">
+                    <h2>Sẵn sàng cài đặt?</h2>
+                    <div class="file-info">
+                        <span>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <strong id="card-filename">InvoiceApp_Setup_v1.0.0.exe</strong>
+                        </span>
+                        <span>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span id="card-os">Windows 10/11 (64-bit)</span>
+                        </span>
+                    </div>
+
+                    <button id="main-download-btn" class="btn btn-primary btn-download-large" onclick="triggerDownload()">
+                        <span class="spinner"></span>
+                        <svg class="btn-icon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span id="download-text">Tải xuống ngay</span>
+                    </button>
+
+                    <div class="download-extras">
+                        <a href="javascript:void(0)" onclick="copyVersion()">Copy version</a>
+                        <span>|</span>
+                        <a href="javascript:void(0)" onclick="toggleChecksum()">Kiểm tra checksum</a>
+                    </div>
+                    
+                    <div id="checksum-display" class="checksum-box">
+                        <strong>SHA-256:</strong> <br>
+                        <code id="sha256-value">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Features Section -->
+        <section id="features" class="fade-in">
+            <div class="container">
+                <h2 class="section-title">Tính năng nổi bật</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Tạo hóa đơn nhanh</h3>
+                        <p>Tạo và in hóa đơn chuyên nghiệp chỉ trong vài cú click chuột. Hỗ trợ nhiều mẫu in.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Quản lý khách hàng</h3>
+                        <p>Lưu trữ thông tin, lịch sử mua hàng và công nợ của khách hàng một cách hệ thống.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Quản lý sản phẩm</h3>
+                        <p>Danh mục sản phẩm rõ ràng, hỗ trợ mã vạch, phân loại và giá bán linh hoạt.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Theo dõi tồn kho</h3>
+                        <p>Kiểm soát số lượng xuất/nhập/tồn tự động, cảnh báo khi sắp hết hàng.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Lịch sử giao dịch</h3>
+                        <p>Báo cáo doanh thu, chi phí và lợi nhuận chi tiết theo ngày, tuần, tháng.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Giao diện dễ sử dụng</h3>
+                        <p>Thiết kế trực quan, không cần đào tạo phức tạp, làm quen chỉ trong 5 phút.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced: System Requirements -->
+        <section id="sys-req" class="fade-in" style="background-color: var(--surface-color);">
+            <div class="container">
+                <h2 class="section-title">Yêu cầu hệ thống</h2>
+                <div class="sys-req-card">
+                    <table class="sys-req-table">
+                        <tbody>
+                            <tr>
+                                <th>Hệ điều hành</th>
+                                <td>Windows 10, Windows 11 (yêu cầu bản 64-bit)</td>
+                            </tr>
+                            <tr>
+                                <th>Bộ vi xử lý (CPU)</th>
+                                <td>Intel Core i3 hoặc AMD tương đương trở lên</td>
+                            </tr>
+                            <tr>
+                                <th>RAM</th>
+                                <td>Tối thiểu 4GB (Khuyến nghị 8GB)</td>
+                            </tr>
+                            <tr>
+                                <th>Dung lượng ổ cứng</th>
+                                <td>200MB dung lượng trống để cài đặt</td>
+                            </tr>
+                            <tr>
+                                <th>Phần mềm kèm theo</th>
+                                <td>.NET Desktop Runtime 8.0 (Trình cài đặt sẽ tự động tải nếu thiếu)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Installation Guide Section -->
+        <section id="guide" class="fade-in">
+            <div class="container">
+                <h2 class="section-title">Hướng dẫn cài đặt</h2>
+                <div class="guide-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Tải file cài đặt</h3>
+                            <p>Bấm vào nút "Tải xuống ngay" ở trên để tải file <strong id="guide-filename">InvoiceApp_Setup_v1.0.0.exe</strong> về máy tính của bạn.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Mở file cài đặt</h3>
+                            <p>Tìm file vừa tải trong thư mục Downloads và click đúp chuột để mở.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Cho phép quyền Windows</h3>
+                            <p>Nếu màn hình User Account Control (UAC) hiện lên, hãy chọn <strong>Yes</strong> để cho phép cài đặt.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Làm theo hướng dẫn</h3>
+                            <p>Chọn thư mục cài đặt (mặc định là C:\Program Files\InvoiceApp) và bấm Next cho đến khi hoàn tất.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Hoàn tất và sử dụng</h3>
+                            <p>Khởi động phần mềm từ shortcut trên Desktop và bắt đầu quản lý cửa hàng của bạn!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Release Notes Section -->
+        <section id="changelog" class="fade-in" style="background-color: var(--surface-color);">
+            <div class="container">
+                <h2 class="section-title">Release Notes</h2>
+                <div class="changelog-box">
+                    <div class="changelog-header">
+                        <h3 style="font-size: 1.5rem; color: var(--primary-color);">Phiên bản <span id="changelog-version">v1.0.0</span></h3>
+                        <span class="badge" id="changelog-date">09/04/2026</span>
+                    </div>
+                    <ul class="changelog-list">
+                        <li>🎉 Phát hành phiên bản chính thức đầu tiên (Initial Release).</li>
+                        <li>Hỗ trợ tính năng tạo và in hóa đơn bán lẻ nhanh chóng.</li>
+                        <li>Tích hợp module quản lý danh mục sản phẩm và thông tin khách hàng.</li>
+                        <li>Thêm tính năng theo dõi tồn kho cơ bản và cảnh báo sắp hết hàng.</li>
+                        <li>Tối ưu hóa và cải thiện hiệu năng giao diện người dùng, đảm bảo trải nghiệm mượt mà trên Windows 10/11.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FAQ Section -->
+        <section id="faq" class="fade-in">
+            <div class="container">
+                <h2 class="section-title">Câu hỏi thường gặp</h2>
+                <div class="faq-container">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Phần mềm hỗ trợ hệ điều hành nào?
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Hiện tại InvoiceApp được thiết kế và tối ưu riêng cho hệ điều hành Windows 10 và Windows 11 (phiên bản 64-bit). Chúng tôi chưa hỗ trợ macOS hoặc Linux.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Nếu Windows SmartScreen chặn file cài đặt thì sao?
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Do đây là phần mềm mới tải từ internet, Windows Defender SmartScreen có thể hiện cảnh báo xanh. Đây là cơ chế bảo vệ bình thường. Bạn chỉ cần bấm vào <strong>"More info" (Thông tin thêm)</strong>, sau đó chọn <strong>"Run anyway" (Vẫn chạy)</strong> để tiếp tục cài đặt.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Có cần cài thêm .NET Runtime không?
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Ứng dụng yêu cầu .NET Desktop Runtime. Tuy nhiên, bộ cài đặt (.exe) đã được tích hợp sẵn cơ chế kiểm tra. Nếu máy tính của bạn chưa có, nó sẽ tự động gợi ý và tải về cho bạn trong quá trình cài đặt.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Tôi có thể cập nhật phiên bản mới như thế nào?
+                            <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                InvoiceApp có tính năng tự động kiểm tra bản cập nhật mỗi khi khởi động. Khi có phiên bản mới, phần mềm sẽ hiển thị thông báo góc phải màn hình để bạn có thể cập nhật trực tiếp chỉ với một cú click chuột mà không cần tải lại file setup ở web.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="justify-content: center; margin-bottom: 16px;">
+                    <img src="Assets/Logo.png" alt="Logo" class="logo-img">
+                    <span id="footer-app-name">InvoiceApp</span>
+                </div>
+                <p>Giải pháp tối ưu cho quản lý bán hàng.</p>
+                <p style="margin-top: 8px;">
+                    <a href="mailto:nguyenlethuan@outlook.com" style="color: var(--text-muted);">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        nguyenlethuan@outlook.com
+                    </a>
+                </p>
+                
+                <div class="footer-warning">
+                    ⚠️ Nếu trình duyệt hoặc Windows chặn tải xuống, hãy kiểm tra quyền tải file hoặc tạm thời tắt phần mềm diệt virus.
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; <span id="current-year"></span> InvoiceApp. Tất cả các quyền được bảo lưu.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
