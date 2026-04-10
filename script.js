@@ -91,7 +91,7 @@ function triggerDownload() {
     // Giả lập delay 1.5s trước khi chuyển link tải
     setTimeout(() => {
         // Chuyển hướng tới file tải xuống
-        // window.location.href = appConfig.downloadUrl; // <-- Bật dòng này ở thực tế
+        window.location.href = appConfig.downloadUrl; // <-- Bật dòng này ở thực tế
         
         // Demo mục đích (hiển thị thành công và reset nút)
         showToast(`Đã yêu cầu tải ${appConfig.fileName} thành công!`, 'success');
