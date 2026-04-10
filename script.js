@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const data = await response.json();
         const asset = data.assets.find(a => a.name.endsWith('.exe'));
-        browser_download_url = `https://github.com/${REPO_CONFIG.owner}/${REPO_CONFIG.repo}/releases/download/${data.tag_name}/Setup.exe`;
+        browser_download_url = `https://github.com/${REPO_CONFIG.owner}/${REPO_CONFIG.repo}/releases/download/${data.tag_name}/${asset.name}`;
 
         appConfig = {
             version: data.tag_name,
